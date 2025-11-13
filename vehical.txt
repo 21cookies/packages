@@ -1,0 +1,71 @@
+
+interface Manufacture {
+    void manufacture();
+}
+
+class Produce implements Manufacture {
+    @Override
+    public void manufacture() {
+        System.out.println("Producing vehicle components...");
+    }
+}
+
+class Assemble implements Manufacture {
+    @Override
+    public void manufacture() {
+        System.out.println("Assembling vehicle parts...");
+    }
+}
+
+
+abstract class Vehicle {
+    protected Manufacture manufacture1;
+    protected Manufacture manufacture2;
+
+    public Vehicle(Manufacture manufacture1, Manufacture manufacture2) {
+        this.manufacture1 = manufacture1;
+        this.manufacture2 = manufacture2;
+    }
+
+    abstract void manufactureVehicle();
+}
+
+class Car extends Vehicle {
+
+    public Car(Manufacture manufacture1, Manufacture manufacture2) {
+        super(manufacture1, manufacture2);
+    }
+
+    @Override
+    void manufactureVehicle() {
+        System.out.println("\nCar manufacturing process started.");
+        manufacture1.manufacture();
+        manufacture2.manufacture();
+        System.out.println("Car manufacturing completed.");
+    }
+}
+
+class Bike extends Vehicle {
+
+    public Bike(Manufacture manufacture1, Manufacture manufacture2) {
+        super(manufacture1, manufacture2);
+    }
+
+    @Override
+    void manufactureVehicle() {
+        System.out.println("\nBike manufacturing process started.");
+        manufacture1.manufacture();
+        manufacture2.manufacture();
+        System.out.println("Bike manufacturing completed.");
+    }
+}
+
+public class BridgePatternDemo {
+    public static void main(String[] args) {
+        Vehicle car = new Car(new Produce(), new Assemble());
+        car.manufactureVehicle();
+
+        Vehicle bike = new Bike(new Produce(), new Assemble());
+        bike.manufactureVehicle();
+    }
+}
