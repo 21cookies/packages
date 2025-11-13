@@ -1,8 +1,3 @@
-/*
-Q7. Factory Method for PizzaStore:
- - Abstract PizzaStore defines orderPizza() that uses createPizza() factory method.
- - Concrete stores override createPizza to return particular Pizza implementations.
-*/
 
 abstract class Pizza {
     public abstract String name();
@@ -50,3 +45,4 @@ class FactoryMethodDemo {
         ch.orderPizza("veggie");
     }
 }
+
