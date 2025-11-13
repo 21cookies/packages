@@ -1,9 +1,3 @@
-/*
-Q6. Decorator pattern for coffees:
- - Component: Coffee
- - Concrete: BasicCoffee
- - Decorators: MilkDecorator, SugarDecorator, SyrupDecorator
-*/
 
 interface Coffee {
     String getDescription();
@@ -50,3 +44,4 @@ class DecoratorDemo {
         System.out.println(c.getDescription() + " -> Rs." + c.cost());
     }
 }
+
