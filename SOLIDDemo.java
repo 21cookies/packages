@@ -1,16 +1,9 @@
-/*
-Q3. Refactor monolithic OrderProcessor into:
- - Validation (IValidator)
- - Price Calculation (IPricingStrategy)
- - Persistence (IOrderRepository)
- - Order Type Handling (OrderTypeStrategy)
-Use constructor DI (DIP). Demonstrates OCP & LSP for different order types.
-*/
 
-// Domain
+
+
 class Order {
     public final String id;
-    public final String type; // e.g., "STANDARD", "PREMIUM"
+    public final String type; 
     public final double baseAmount;
     public Order(String id, String type, double baseAmount) {
         this.id = id; this.type = type; this.baseAmount = baseAmount;
@@ -28,7 +21,7 @@ class BasicOrderValidator implements IValidator {
     }
 }
 
-// Pricing
+
 interface IPricingStrategy {
     double calculatePrice(Order o);
 }
@@ -50,7 +43,6 @@ class FileOrderRepository implements IOrderRepository {
     }
 }
 
-// OrderTypeHandler (OCP)
 interface IOrderTypeStrategy {
     boolean supports(Order o);
     IPricingStrategy pricing();
@@ -64,7 +56,7 @@ class PremiumOrderTypeHandler implements IOrderTypeStrategy {
     public IPricingStrategy pricing() { return new PremiumPricing(); }
 }
 
-// OrderProcessor composes dependencies (DIP). Open for extension (add new handlers).
+
 class OrderProcessor {
     private final IValidator validator;
     private final IOrderRepository repo;
@@ -88,7 +80,6 @@ class OrderProcessor {
     }
 }
 
-// Demo
 class SOLIDDemo {
     public static void main(String[] args) {
         IValidator validator = new BasicOrderValidator();
@@ -100,3 +91,4 @@ class SOLIDDemo {
         processor.process(new Order("O2", "PREMIUM", 200));
     }
 }
+
