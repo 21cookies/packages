@@ -1,9 +1,4 @@
-/*
-Q8. Observer pattern:
- - Subject: WeatherStation (maintains temperature/humidity)
- - Observer: Display (ConsoleDisplay, etc.)
- When data changes, subject notifies observers.
-*/
+
 
 import java.util.*;
 
@@ -50,3 +45,4 @@ class ObserverDemo {
         station.setMeasurements(28.2, 75.5);
     }
 }
+
