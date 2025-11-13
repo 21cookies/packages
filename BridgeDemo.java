@@ -1,17 +1,10 @@
-/*
-Q4. Bridge Pattern: Separate Vehicle abstraction from Manufacture implementation.
- - Abstractions: Vehicle (Car/Bike)
- - Implementations: Produce, Assemble (manufacture processes)
-This allows independent extension of vehicles and manufacturing processes.
-*/
 
-// Implementor
+
 interface Manufacture {
     void produceEngine();
     void assembleBody();
 }
 
-// Concrete implementors
 class Produce implements Manufacture {
     public void produceEngine() { System.out.println("Producing engine parts"); }
     public void assembleBody() { System.out.println("Assembling body parts"); }
@@ -22,14 +15,13 @@ class Assemble implements Manufacture {
     public void assembleBody() { System.out.println("Assemble specialized body"); }
 }
 
-// Abstraction
 abstract class Vehicle {
     protected Manufacture manufacture;
     protected Vehicle(Manufacture m) { this.manufacture = m; }
     public abstract void build();
 }
 
-// Refined abstractions
+
 class Car extends Vehicle {
     public Car(Manufacture m) { super(m); }
     public void build() {
@@ -48,7 +40,6 @@ class Bike extends Vehicle {
     }
 }
 
-// Demo
 class BridgeDemo {
     public static void main(String[] args) {
         Manufacture produce = new Produce();
@@ -61,3 +52,4 @@ class BridgeDemo {
         bike.build();
     }
 }
+
