@@ -1,7 +1,4 @@
-/*
-Q11. Command Pattern for a universal remote. Commands: TurnOnLight, TurnOffLight, StartFan.
-Invoker supports execute, queue, undo (last).
-*/
+
 
 import java.util.*;
 
@@ -10,7 +7,7 @@ interface Command {
     void undo();
 }
 
-// Receiver(s)
+
 class Light {
     private final String name;
     private boolean on;
@@ -44,7 +41,7 @@ class StartFanCommand implements Command {
     public void undo() { fan.stop(); }
 }
 
-// Invoker with queue and undo
+
 class RemoteControl {
     private final Queue<Command> queue = new LinkedList<>();
     private final Deque<Command> history = new ArrayDeque<>();
@@ -91,7 +88,7 @@ class CommandDemo {
         remote.queueCommand(off);
         remote.runQueue();
 
-        remote.undo(); // undoes off -> switches light on
-        remote.undo(); // undoes startFan -> stops fan
+        remote.undo(); 
     }
 }
+
